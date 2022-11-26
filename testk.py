@@ -1,5 +1,9 @@
+import os
 import sys
 import tkinter as tk
+
+if os.path.isdir("tes") == False:
+    os.mkdir("tes")
 
 root = tk.Tk()
 
@@ -9,28 +13,38 @@ root.title(u"window")
 # windows size
 root.geometry('400x300')
 
+def inputTxt(txt):
+    f = open('./tes/tes.txt','w')
+    f.write(txt)
+    f.close
+
 def deleteEntry(event):
     entry.delete(0, tk.END)
 
 def getText(event):
     entryValue = 0
     entryValue = entry.get()
-    label = tk.Label(text=str(entryValue))
-    label.pack()
+    inputTxt(entryValue)
 
-# label
-static1 = tk.Label(text="test", foreground='#ff0000', background='#90caf9')
-# これで本当にいいのか？
-static1.pack()
+def main():
+    # label
+    static1 = tk.Label(text="test", foreground='#ff0000', background='#90caf9')
+    # これで本当にいいのか？
+    static1.pack()
 
-# entry
-entry = tk.Entry(width=50)
-entry.insert(tk.END, '挿入する文字列')
-entry.pack()
+    # entry
+    entry = tk.Entry(width=50)
+    entry.insert(tk.END, '挿入する文字列')
+    entry.pack()
 
-# button
-button1 = tk.Button(text = 'なぐる', width=50)
-button1.bind('<1>', getText)
-button1.pack()
+    # button
+    button1 = tk.Button(text = 'なぐる', width=50)
+    button1.bind('<1>', getText)
+    button1.pack()
 
-root.mainloop()
+    root.mainloop()
+
+
+if __name__ == '__main__':
+    main()
+
